@@ -1,0 +1,29 @@
+# BakaSU (KernelSU) + SUSFS defconfig fragment
+# Applied via --defconfig_fragment=//common:bakasu_susfs.fragment
+#
+# Hook method = SUSFS inline hook (Kconfig choice "KernelSU Hooking Method").
+# BakaSU driver/Kbuild evaluates in this order:
+#   ifdef tracepoint hook -> else ifdef manual hook -> else ifdef susfs
+# so the tracepoint and manual hook choice members must be explicitly off,
+# otherwise the SUSFS branch becomes dead code.
+#
+# NOTE: do not write raw symbol names in comments here - Kleaf's fragment
+# verifier greps the whole file for each symbol and would pick up the comment.
+#
+# NOTE: the priority-uid-filter knob does not exist in BakaSU's
+# drivers/kernelsu/Kconfig (only 10 susfs symbols exist), so it is omitted.
+
+CONFIG_KSU=y
+CONFIG_KSU_SUSFS=y
+# CONFIG_KSU_TRACEPOINT_HOOK is not set
+# CONFIG_KSU_MANUAL_HOOK is not set
+
+CONFIG_KSU_SUSFS_SUS_PATH=y
+CONFIG_KSU_SUSFS_SUS_MOUNT=y
+CONFIG_KSU_SUSFS_SUS_KSTAT=y
+CONFIG_KSU_SUSFS_SPOOF_UNAME=y
+CONFIG_KSU_SUSFS_OPEN_REDIRECT=y
+CONFIG_KSU_SUSFS_SUS_MAP=y
+CONFIG_KSU_SUSFS_HIDE_KSU_SUSFS_SYMBOLS=y
+CONFIG_KSU_SUSFS_ENABLE_LOG=y
+CONFIG_KSU_SUSFS_SPOOF_CMDLINE_OR_BOOTCONFIG=y

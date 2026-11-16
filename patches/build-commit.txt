@@ -1,0 +1,8 @@
+45bc826d05a2a8841f58a8ec6e2de5596036753d
+build: add BakaSU+SUSFS defconfig fragment, drop protected exports list
+
+
+ BUILD.bazel                               |   4 +
+ android/abi_gki_protected_exports_aarch64 | 359 ------------------------------
+ bakasu_susfs.fragment                     |  29 +++
+ 3 files changed, 33 insertions(+), 359 deletions(-)
